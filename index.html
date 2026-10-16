@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<meta name="robots" content="noindex">
+<title>수간호사의 반복 행정업무 줄이기</title>
+<style>:root { --ink: #172033; --muted: #657086; --line: #dfe4ed; --soft: #f5f7fb; --blue: #2457f5; --nav: #111a2e; --green: #16a36b; --warn: #ffad22; --page-pad: clamp(28px,5.8vw,82px); --font-sans: "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body { margin: 0px; background: rgb(238, 241, 246); color: var(--ink); font-family: var(--font-sans); line-height: 1.7; letter-spacing: -0.01em; }
+.app aside { position: fixed; inset: 0px auto 0px 0px; width: 310px; height: 100vh; padding: 0 16px 28px; background: var(--nav); color: rgb(255, 255, 255); overflow-y: auto; z-index: 10; }
+.app main { min-height: 100vh; margin-left: 310px; background: rgb(255, 255, 255); }
+.side-head { position: sticky; top: 0; z-index: 1; margin: 0 -16px; padding: 20px 26px 14px; background: var(--nav); border-bottom: 1px solid rgb(45, 56, 80); }
+.brand { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: rgb(130, 145, 177); }
+aside h1 { margin: 6px 0 4px; font-size: 17px; line-height: 1.35; letter-spacing: -0.02em; }
+.side-sub, .side-foot { font-size: 12px; color: rgb(150, 162, 186); }
+aside nav { margin-top: 10px; }
+aside nav a { display: block; padding: 7px 10px 7px 22px; color: rgb(190, 200, 219); text-decoration: none; font-size: 14px; line-height: 1.45; border-left: 3px solid transparent; border-radius: 0 6px 6px 0; }
+aside nav a:hover { color: rgb(255, 255, 255); background: rgb(25, 36, 60); }
+aside nav .major { margin-top: 12px; padding-left: 10px; color: rgb(255, 255, 255); font-size: 15px; font-weight: 800; }
+aside nav a.active { color: rgb(255, 255, 255); background: rgb(30, 44, 74); border-left-color: var(--blue); font-weight: 700; }
+.side-foot { margin: 20px 10px 0; padding-top: 14px; border-top: 1px solid rgb(45, 56, 80); }
+.hero { padding: 86px var(--page-pad) 72px; background: linear-gradient(135deg, rgb(247, 249, 255), rgb(238, 243, 255) 58%, rgb(233, 255, 246)); border-bottom: 1px solid var(--line); }
+.kicker, .section-label, .topic-label, .eyebrow { font-size: 13px; font-weight: 800; letter-spacing: 0.13em; color: var(--blue); }
+.hero h1 { margin: 16px 0px; font-size: clamp(40px, 5vw, 70px); line-height: 1.08; letter-spacing: -0.055em; }
+.hero h1 em { color: var(--blue); font-style: normal; }
+.hero > p { max-width: 860px; color: rgb(79, 91, 114); font-size: 18px; }
+.hero-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 38px; background: rgb(220, 226, 237); border: 1px solid rgb(220, 226, 237); }
+.hero-grid div { background: rgb(255, 255, 255); padding: 16px; }
+.hero-grid b { display: block; font-size: 12px; color: rgb(125, 135, 153); }
+.hero-grid span { font-size: 14px; font-weight: 800; }
+.section { padding: 70px var(--page-pad); border-bottom: 1px solid var(--line); scroll-margin-top: 18px; }
+.section > h2, .session-head h2 { margin: 8px 0px 14px; font-size: 36px; letter-spacing: -0.04em; }
+.lead { font-size: 18px; max-width: 900px; }
+.three-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0px; }
+.three-cards article { padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: rgb(255, 255, 255); }
+.three-cards article > span { font-size: 12px; font-weight: 800; color: var(--blue); }
+.three-cards h3 { margin: 8px 0px 5px; font-size: 20px; }
+.three-cards p, .caption { color: var(--muted); font-size: 14px; }
+.notice, .warning { margin: 22px 0px; padding: 16px 19px; }
+.notice { border-left: 4px solid var(--blue); background: rgb(234, 240, 255); }
+.warning { border-left: 4px solid var(--warn); background: rgb(255, 246, 230); }
+.schedule { margin-top: 30px; }
+.schedule div { display: grid; grid-template-columns: 48px 125px 1fr; align-items: center; padding: 13px 0px; border-top: 1px solid var(--line); }
+.schedule span.badge { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: var(--nav); color: rgb(255, 255, 255); font-size: 12px; }
+.schedule p { margin: 0px; }
+.session { padding-top: 0px; }
+.session-head { margin: 0 calc(var(--page-pad)*-1) 50px; padding: 52px var(--page-pad); background: var(--nav); color: rgb(255, 255, 255); }
+.session-head .eyebrow { color: rgb(125, 160, 255); }
+.session-head p { max-width: 900px; color: rgb(195, 204, 220); }
+.vibe-intro { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: start; margin-top: 30px; padding-top: 28px; border-top: 1px solid rgb(45, 56, 80); }
+.vibe-quote { margin: 0; padding-left: 18px; border-left: 3px solid rgb(125, 160, 255); }
+.vibe-quote blockquote { margin: 0 0 10px; color: #fff; font-size: 21px; font-weight: 700; line-height: 1.5; letter-spacing: -0.03em; }
+.vibe-quote figcaption { color: rgb(160, 172, 196); font-size: 13px; }
+.vibe-meaning { margin: 18px 0 0; padding: 14px 16px; border-radius: 12px; background: rgb(25, 36, 60); color: rgb(215, 222, 236); font-size: 15px; }
+.vibe-meaning b { color: #fff; }
+.vibe-timeline { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.vibe-timeline li { display: grid; grid-template-columns: 74px 1fr; gap: 12px; padding: 12px 14px; border: 1px solid rgb(45, 56, 80); border-radius: 12px; background: rgba(255, 255, 255, 0.03); }
+.vibe-timeline time { color: rgb(125, 160, 255); font-size: 13px; font-weight: 800; letter-spacing: 0.02em; }
+.vibe-timeline b { display: block; color: #fff; font-size: 15px; }
+.vibe-timeline span { display: block; color: rgb(185, 195, 214); font-size: 14px; line-height: 1.55; }
+.vibe-sources { grid-column: 1 / -1; margin: 0; color: rgb(130, 145, 177); font-size: 12px; }
+.vibe-sources a { color: rgb(160, 180, 230); }
+@media (max-width: 1020px) { .vibe-intro { grid-template-columns: 1fr; } }
+.time { font-size: 13px; color: rgb(174, 185, 207); }
+.topic { margin-bottom: 70px; scroll-margin-top: 20px; }
+.topic h3 { margin: 8px 0px 12px; font-size: 28px; letter-spacing: -0.025em; }
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; margin: 18px 0px 26px; }
+.flow div { text-align: center; padding: 16px 12px; border-radius: 12px; background: rgb(237, 242, 255); }
+.flow span { display: block; font-size: 12px; font-weight: 800; color: var(--blue); }
+.flow b { display: block; }
+.flow small { display: block; margin-top: 5px; color: var(--muted); }
+.versus { display: grid; grid-template-columns: 1fr 54px 1fr; align-items: center; margin: 16px 0px 26px; }
+.versus > div { padding: 20px; border: 1px solid var(--line); border-radius: 13px; background: var(--soft); }
+.versus i { text-align: center; color: var(--blue); font-style: normal; font-weight: 900; }
+.table-wrap { overflow: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+th { padding: 13px; text-align: left; color: rgb(255, 255, 255); background: var(--nav); }
+td { padding: 14px 13px; border-bottom: 1px solid var(--line); }
+.checklist { display: grid; gap: 7px; padding: 0px; list-style: none; }
+.checklist li { padding: 11px 14px; border-radius: 8px; background: var(--soft); }
+.checklist li::before { content: "✓"; margin-right: 8px; color: var(--blue); font-weight: 900; }
+.practice-brief { display: grid; gap: 8px; margin: 18px 0px; }
+.practice-brief > div { padding: 15px 18px; border: 1px solid rgb(200, 239, 221); border-radius: 12px; background: rgb(237, 255, 246); }
+.copybox { margin: 20px 0px; border: 1px solid rgb(207, 215, 230); border-radius: 12px; overflow: hidden; background: rgb(17, 26, 46); color: rgb(232, 238, 252); }
+.copyhead { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgb(30, 43, 71); font-size: 13px; font-weight: 800; }
+.copyhead button { padding: 5px 10px; border: 1px solid rgb(97, 112, 141); border-radius: 6px; background: transparent; color: rgb(255, 255, 255); cursor: pointer; }
+.copybox pre { white-space: pre-wrap; margin: 0px; padding: 20px; font: 13px / 1.72 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0px 26px; }
+.steps article { padding: 18px; border-top: 4px solid var(--blue); border-radius: 12px; }
+.steps strong { display: block; color: var(--blue); font-size: 12px; }
+.steps b { display: block; font-size: 18px; margin-top: 3px; }
+.sub-optional { margin-top: 10px; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 10px; color: var(--muted); font-size: 14px; }
+.sub-optional .tag { margin-left: 0; }
+.steps .sub-optional b { display: inline; font-size: 14px; margin: 0 4px 0 2px; color: var(--muted); }
+.tag { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0; vertical-align: 1px; }
+.tag-req { background: var(--blue); color: #fff; }
+.tag-opt { border: 1px solid var(--line); background: #fff; color: var(--muted); font-weight: 700; }
+.final-box { padding: 28px; border-radius: 18px; background: linear-gradient(135deg, rgb(17, 26, 46), rgb(29, 47, 88)); color: rgb(255, 255, 255); }
+.final-box h3 { margin: 6px 0px 8px; font-size: 30px; }
+.final-box p { color: rgb(203, 213, 231); }
+code.inline { padding: 2px 6px; border-radius: 6px; background: rgb(238, 242, 248); font-family: ui-monospace, monospace; }
+.small { font-size: 13px; color: var(--muted); }
+.resource-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0px 28px; }
+.resource-card { padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); }
+.resource-card b { display: block; margin-bottom: 4px; }
+.resource-card a { color: var(--blue); font-weight: 800; text-decoration: none; word-break: break-all; font-size: 13px; }
+.sample-link { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 22px 0; padding: 14px 18px; border: 1px solid rgb(203, 218, 255); border-radius: 12px; background: rgb(240, 245, 255); }
+.sample-link span { color: var(--muted); font-size: 14px; }
+.sample-link b { display: block; color: var(--ink); font-size: 15px; }
+.sample-link .resource-link { flex-shrink: 0; margin-top: 0; }
+@media (max-width: 680px) { .sample-link { flex-direction: column; align-items: flex-start; } }
+.resource-link { display: inline-block; margin-top: 8px; padding: 8px 12px; border: 1px solid rgb(203, 213, 225); border-radius: 8px; color: var(--blue); font-size: 13px; font-weight: 800; text-decoration: none; background: rgb(255, 255, 255); }
+.procedure { counter-reset: step 0; display: grid; gap: 10px; margin: 18px 0px 28px; }
+.procedure > div { position: relative; padding: 15px 16px 15px 54px; border: 1px solid var(--line); border-radius: 12px; background: rgb(255, 255, 255); }
+.procedure > div::before { counter-increment: step 1; content: counter(step); position: absolute; left: 16px; top: 15px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: rgb(255, 255, 255); font-size: 12px; font-weight: 900; }
+.sample-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 18px 0px 28px; }
+.sample-grid article { padding: 18px; border: 1px solid var(--line); border-radius: 13px; background: var(--soft); }
+.term-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 22px 0px; }
+.term-grid article { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); }
+.term-grid strong { display: block; color: var(--blue); font-size: 12px; letter-spacing: 0.08em; }
+.term-grid h4 { margin: 5px 0px 8px; font-size: 20px; }
+.talk { margin: 18px 0px; padding: 22px; border-left: 4px solid var(--green); background: rgb(241, 252, 247); }
+.talk p { margin: 0px 0px 14px; }
+.talk p:last-child { margin-bottom: 0px; }
+.example-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 18px 0px 24px; }
+.example-flow div { padding: 14px 12px; border-radius: 10px; background: rgb(255, 248, 235); }
+.example-flow b, .example-flow span { display: block; }
+.example-flow span { margin-bottom: 3px; color: rgb(154, 100, 16); font-size: 12px; font-weight: 800; }
+details.optional { margin-top: 8px; padding: 0 22px 6px; border: 1px solid var(--line); border-radius: 14px; background: var(--soft); }
+details.optional > summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 20px 0; cursor: pointer; list-style: none; }
+details.optional > summary::-webkit-details-marker { display: none; }
+details.optional > summary::before { content: "▸"; color: var(--blue); font-weight: 900; }
+details.optional[open] > summary::before { content: "▾"; }
+details.optional .summary-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+details.optional .summary-hint { font-size: 13px; color: var(--muted); }
+details.optional[open] .summary-hint { display: none; }
+.profile-card { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--soft); }
+.profile-card h3 { margin: 0 0 6px; font-size: 22px; }
+.profile-card ul { margin: 10px 0 0; padding-left: 18px; }
+.profile-links { display: grid; gap: 8px; align-content: start; }
+.profile-links a { padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--blue); font-size: 14px; font-weight: 700; text-decoration: none; word-break: break-all; }
+.sample-shot { margin: 22px 0; }
+.sample-shot img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
+.sample-shot.narrow img { max-width: 700px; margin: 0 auto; }
+.sample-shot.small img { max-width: 360px; }
+.sample-shot figcaption { margin-top: 10px; color: var(--muted); font-size: 14px; }
+@media (max-width: 680px) { .profile-card { grid-template-columns: 1fr; padding: 18px; } }
+.app aside { word-break: keep-all; }
+.topic .three-cards h3 { margin: 8px 0 5px; font-size: 20px; letter-spacing: -0.02em; }
+.block-title { margin: 34px 0 4px; font-size: 22px; letter-spacing: -0.02em; scroll-margin-top: 18px; }
+.break { padding: 54px var(--page-pad); background: rgb(246, 248, 252); border-bottom: 1px solid var(--line); }
+.break h2 { margin: 0px 0px 8px; font-size: 32px; }
+@media (max-width: 1020px) {
+  .app aside { display: none; }
+  .app main { margin-left: 0px; }
+  .hero-grid, .three-cards, .steps, .term-grid, .example-flow { grid-template-columns: 1fr 1fr; }
+  .flow { grid-template-columns: 1fr 1fr; }
+}
+.nav-toggle { position: fixed; top: 14px; left: 322px; z-index: 20; display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 255, 255, 0.94); color: var(--ink); font: 700 13px/1 var(--font-sans); cursor: pointer; box-shadow: 0 4px 14px rgba(17, 26, 46, 0.12); transition: left .25s ease; }
+.nav-toggle:hover { border-color: var(--blue); color: var(--blue); }
+.nav-toggle svg { width: 16px; height: 16px; }
+.app aside { transition: transform .25s ease; }
+.app main { transition: margin-left .25s ease; }
+body.nav-hidden .app aside { transform: translateX(-100%); }
+body.nav-hidden .app main { margin-left: 0; }
+body.nav-hidden .nav-toggle { left: 14px; }
+@media (max-width: 1020px) {
+  .app aside { display: block; width: min(310px, calc(100vw - 64px)); transform: translateX(-100%); }
+  .nav-toggle { left: 14px; }
+  body.nav-open .app aside { transform: none; box-shadow: 8px 0 24px rgba(17, 26, 46, 0.25); }
+  body.nav-open .nav-toggle { left: auto; right: 10px; padding: 0 11px; }
+  body.nav-open .nav-toggle span { display: none; }
+}
+@media (max-width: 680px) {
+  .hero, .section, .break { padding-left: 20px; padding-right: 20px; }
+  .hero { padding-top: 54px; }
+  .hero-grid, .three-cards, .steps, .flow, .resource-list, .term-grid, .example-flow { grid-template-columns: 1fr; }
+  .schedule div { grid-template-columns: 38px 100px 1fr; }
+  .versus { grid-template-columns: 1fr; }
+  .versus i { padding: 8px 0px; }
+  .session-head { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
+  .section > h2, .session-head h2 { font-size: 30px; }
+  .topic h3 { font-size: 24px; }
+}
+
+.tt{margin:0;padding-left:1.1em}.tt li{margin:2px 0}
+.dl-list{display:grid;gap:10px;margin:18px 0}
+.dl-card{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;text-decoration:none;color:var(--ink)}
+.dl-card:hover{border-color:var(--blue);background:var(--soft)}
+.dl-ico{flex:none;display:grid;place-items:center;width:44px;height:52px;border-radius:8px;background:rgb(237,242,255);color:var(--blue);font-size:11px;font-weight:800}
+.dl-body{flex:1}.dl-body b{display:block;font-size:16px}.dl-body span{display:block;font-size:13px;color:var(--muted)}
+.dl-ico.csv{background:rgb(226,246,238);color:var(--green)}
+.dl-btn{flex:none;padding:8px 14px;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;font-weight:800}
+@media(max-width:680px){.dl-card{flex-wrap:wrap}}
+#slide .sample-shot{margin:8px 0}#slide .sample-shot img{max-height:420px;width:auto;max-width:100%;margin:0 auto}#slide .sample-shot figcaption{margin-top:4px;font-size:13px;text-align:center}
+#slide .dl-card{padding:10px 14px}
+.todo{color:#b42318;font-weight:700}
+main,#slide{word-break:keep-all;overflow-wrap:break-word}
+h1,h2,h3,.hero p,.lead{text-wrap:balance}
+p,li,td{text-wrap:pretty}
+td .tag{margin-bottom:2px}
+.tag.nap{background:#7c3aed}.tag.sheet{background:var(--green)}
+.tag{margin-left:0;margin-right:4px}
+.topic .small{display:block}
+.resource-card .small{display:block;margin-bottom:6px}
+.resource-card a{display:inline-block;margin:2px 0}
+.copybox pre{background:none;color:inherit}
+.hero-grid{grid-template-columns:repeat(3,1fr)}
+.sample-link .resource-link{margin:0 6px 0 0}
+.sample-link{flex-wrap:wrap;justify-content:flex-start;gap:6px}
+#slideBtn{position:fixed;right:16px;bottom:16px;z-index:30;background:var(--blue);color:#fff;border:0;border-radius:999px;padding:12px 20px;font:700 15px var(--font-sans);cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+#deck{position:fixed;inset:0;z-index:100;background:#0b1220;display:flex;flex-direction:column}
+#deck[hidden]{display:none}
+#viewport{flex:1;min-height:0;position:relative;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;background:#fff;display:flex;flex-direction:column;overflow:hidden;transform-origin:center center;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+#master{flex:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 96px;background:var(--nav);color:#fff;font-weight:800;font-size:15px}
+#master .m-brand{font-size:11px;letter-spacing:.14em;color:rgb(130,145,177);margin-right:12px}
+#mbar{flex:none;height:4px;background:var(--line)}#prog{display:block;height:100%;background:var(--blue);width:0}
+#slide{flex:1;min-height:0;overflow:hidden;padding:28px 96px 12px;font-size:19px;line-height:1.55}
+#slide h1{font-size:46px;line-height:1.15;margin:12px 0}#slide h1 em{color:var(--blue);font-style:normal}
+#slide h3.st{margin:0 0 14px;font-size:32px;letter-spacing:-.03em}
+#slide .cont{font-size:16px;color:var(--muted);font-weight:500;margin-left:10px}
+#slide table{font-size:16px;margin-top:6px}#slide th,#slide td{padding:9px 12px}
+#slide .copybox{margin:10px 0}#slide .copybox pre{font-size:15px;padding:14px 18px}
+#slide p,#slide .notice,#slide .warning{margin:8px 0}
+#slide .notice,#slide .warning{padding:12px 16px}
+#slide .procedure{gap:8px;margin:10px 0}#slide .procedure>div{padding:10px 14px 10px 50px}
+#slide .resource-list{grid-template-columns:repeat(3,1fr);margin:10px 0}
+#slide .hero-grid{margin-top:20px}#slide .flow{grid-template-columns:repeat(5,1fr);margin:12px 0 16px}#slide .flow div{padding:10px 8px}#slide .hero-grid{grid-template-columns:repeat(3,1fr)}
+#pager{flex:none;display:flex;align-items:center;justify-content:center;gap:14px;height:40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:700}
+#pager button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:6px;width:30px;height:26px;font-size:11px;cursor:pointer}
+#bar{flex:none;display:flex;align-items:center;justify-content:center;gap:16px;padding:8px;background:#111a2e;color:#cbd5e7;font-size:14px}
+#bar button{border:1px solid rgb(97,112,141);background:transparent;color:#fff;border-radius:8px;padding:6px 14px;font:700 14px var(--font-sans);cursor:pointer}
+@media print{#slideBtn,#deck{display:none!important}}
+
+aside nav .nav-title{padding:6px 10px 10px;font-size:12px;font-weight:800;letter-spacing:.12em;color:rgb(130,145,177)}
+aside nav .grp{margin-top:20px;padding-top:12px;border-top:1px solid rgb(45,56,80)}
+aside nav .nav-title+.grp{margin-top:0;border-top:0;padding-top:0}
+aside nav .grp-label{padding:0 10px 4px;font-size:11px;font-weight:800;letter-spacing:.1em;color:rgb(130,145,177)}
+aside nav a.l2{margin-top:0;padding:6px 10px;color:#fff;font-size:15px;font-weight:800;border-left:3px solid transparent}
+aside nav a.l3{margin-left:12px;padding:5px 10px 5px 14px;font-size:14px;border-left:1px solid rgb(45,56,80)}
+aside nav a.l4{display:none;margin-left:12px;padding:3px 10px 3px 30px;font-size:12.5px;color:rgb(150,162,186);border-left:1px solid rgb(45,56,80)}
+aside nav a.l4.show{display:block}
+aside nav a.active{border-left-color:var(--blue)}
+.dh{margin:30px 0 8px;padding:2px 0 2px 12px;border-left:4px solid var(--blue)}
+.dh b{font-size:1.06em}
+#slide .dh{margin:12px 0 8px}
+#slide .eb{margin:0 0 4px;font-size:14px;font-weight:800;letter-spacing:.06em;color:var(--blue)}
+#slide .outline{columns:2;column-gap:56px;font-size:16px;line-height:1.5}
+#slide .outline .og{break-inside:avoid;margin-bottom:12px}
+#slide .outline b{display:block;font-size:17px}
+#slide .outline span{display:block;padding-left:14px;color:var(--muted);font-size:14.5px}
+
+.base{margin:6px 0 14px;padding:8px 12px;border-left:4px solid var(--green);background:rgb(236,248,243);font-size:14.5px}
+.copybox pre{font:15px/1.8 var(--font-sans);letter-spacing:-.01em}
+.copybox pre.fmt{white-space:normal;padding:18px 20px}
+.pl{display:flex;gap:10px;margin:0 0 9px}.pl:last-child{margin-bottom:0}
+.pl .pk{flex:none;width:3.3em;color:rgb(140,180,255);font-weight:800}
+.pl.k2 .pk{color:rgb(110,220,180)}.pl.k3 .pk{color:rgb(255,200,110)}
+.pl .pt{flex:1;min-width:0}
+.pl.c{padding-left:calc(3.3em + 10px);margin-top:-5px}
+#slide .copybox pre.fmt{font-size:17px;padding:14px 18px}
+#slide .base{font-size:15px;padding:6px 12px}
+
+.dh{margin:22px 0 8px;padding:2px 0 2px 12px;border-left:4px solid var(--blue)}
+.practice-brief .small{display:block;margin-top:4px}
+.versus b{display:block;margin-bottom:6px}
+.topic > .small{margin:0 0 10px}
+</style>
+</head>
+<body>
+<button class="nav-toggle" type="button" aria-controls="side-nav" aria-expanded="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg><span>목차 숨기기</span></button>
+<div class="app">
+<aside id="side-nav"><div class="side-head"><div class="brand">NURSE MANAGER · LECTURE NOTE</div><h1>수간호사의 반복 행정업무 줄이기</h1><div class="side-sub">근무표부터 업무자동화까지 · 60분 실습</div></div>
+<nav><div class="nav-title">전체 목차</div><div class="grp"><div class="grp-label">교육 안내</div><a class="l2" href="#overview">교육 개요</a><a class="l2" href="#timetable">타임테이블</a><a class="l2" href="#prep">수업 전 준비</a><a class="l3" href="#prep-1">실습 파일</a></div><div class="grp"><div class="grp-label">오프닝</div><a class="l2" href="#s0">오늘의 목적과 도구</a><a class="l3" href="#s0-1">0-1. 오늘의 목적</a><a class="l3" href="#s0-2">0-2. 오늘 쓰는 무료 도구</a><a class="l3" href="#s0-3">0-3. 핵심 원칙</a><a class="l3" href="#s0-4">0-4. 근무표 파일 열기</a></div><div class="grp"><div class="grp-label">세션 1</div><a class="l2" href="#s1">근무표 작성원칙 5가지</a><a class="l3" href="#s1-1">1-1. O와 N의 개수</a><a class="l3" href="#s1-2">1-2. N을 붙이는 방법</a><a class="l3" href="#s1-3">1-3. 넣으면 안 되는 순서</a><a class="l3" href="#s1-4">1-4. 병동별 인원과 특수 규칙</a><a class="l3" href="#s1-5">1-5. 신청근무와 균형</a></div><div class="grp"><div class="grp-label">실습 A</div><a class="l2" href="#sA">조건부 서식 만들기</a><a class="l3" href="#sA-0">A-0. 규칙 3개와 적용 방법</a><a class="l3" href="#sA-1">A-1. N 4회 연속 금지</a><a class="l3" href="#sA-2">A-2. 금기 순서 4가지</a><a class="l3" href="#sA-3">A-3. N 7회 초과 경고</a></div><div class="grp"><div class="grp-label">실습 B</div><a class="l2" href="#sB">구글 폼으로 신청근무 수집</a><a class="l3" href="#sB-1">B-1. 폼 질문 구성</a><a class="l3" href="#sB-2">B-2. 시트에 연결하기</a><a class="l3" href="#sB-3">B-3. 응답표를 AI에게 보여 주기</a><a class="l3" href="#sB-4">B-4. 응답표 → 신청근무</a><a class="l3" href="#sB-5">B-5. 생성기에 넣고 점검</a></div><div class="grp"><div class="grp-label">실습 C</div><a class="l2" href="#sCalc">먼저 계산해 보기</a><a class="l2" href="#sC">근무표 생성기 만들기</a><a class="l3" href="#sC-1">C-1. 기본 조건</a><a class="l3" href="#sC-2">C-2. 입력 화면</a><a class="l3" href="#sC-3">C-3. 공통 규칙</a><a class="l3" href="#sC-4">C-4. 병동별 규칙 · 계산</a><a class="l3" href="#sC-5">C-5. 결과 화면</a><a class="l3" href="#sC-6">C-6. 잘 작동하는 이유</a></div><div class="grp"><div class="grp-label">검증 · 정리</div><a class="l2" href="#sV">검증과 수정 요청</a><a class="l3" href="#sV-1">V-1. 앱 결과를 시트로 확인</a><a class="l3" href="#sV-2">V-2. 일부러 틀려 보기</a><a class="l3" href="#sV-3">V-3. 수정 요청 ① 주말 · 날짜</a><a class="l3" href="#sV-4">V-4. 수정 요청 ② 고정 · 설명</a><a class="l3" href="#sV-5">V-5. 수정 요청 ③ 오류</a><a class="l2" href="#sBonus">보너스 · 이메일 알림</a><a class="l2" href="#sEnd">정리</a></div></nav><div class="side-foot">구글 시트 · 구글 폼 · AI 채팅 · 번호로만 실습</div></aside>
+<main><header class="hero">
+<div class="kicker">NURSE MANAGER · AI SHIFT SCHEDULE · 현장 강의</div>
+<h1>수간호사의<br><em>반복 행정업무 줄이기</em><br>근무표부터 업무자동화까지</h1>
+<p>근무표를 짜고, 고치고, 공지하는 일을 AI와 무료 도구로 줄여 보는 시간이에요. 규칙을 말로 설명해 조건부 서식을 만들고, 구글 폼으로 신청근무를 모으고, AI로 근무표 생성기를 만든 뒤 결과를 시트로 검증해요. 오늘 가져가는 프롬프트와 검증 습관을 내일 우리 병동에 그대로 쓰시면 됩니다.</p>
+<div class="hero-grid"><div><b>일정</b><span>60분 실습 강의</span></div><div><b>도구</b><span>구글 시트 · 구글 폼 · AI 채팅 · Canvas/아티팩트</span></div><div><b>실습 파일</b><span>aa병동(3-3-2) · bb병동(5-5-5) 근무표</span></div></div>
+</header><section class="section" id="overview"><div class="section-label">OVERVIEW</div><h2>교육 개요</h2><div class="table-wrap"><table><tr><th>시간</th><td>60분 실습 강의 (오프닝 8분 · 실습 A 10분 · 실습 B 8분 · 실습 C 20분 · 검증 10분 · 정리 4분)</td></tr><tr><th>도구</th><td><span class="tag tag-req sheet">구글 스프레드시트</span>근무표 틀과 규칙 위반 자동 표시<br/><span class="tag tag-req sheet">구글 폼</span>신청근무 수집<br/><span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span>근무표 생성기 웹앱 제작<br/><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span>조건부 서식 수식, 공지문, 인수인계 요약</td></tr><tr><th>무료 사용</th><td>모든 도구는 무료 계정으로 시작할 수 있어요. 다만 AI 채팅은 파일 업로드·대화 길이 등 <b>사용량 한도</b>가 있으니, 수업 전에 한 번 미리 해 보세요.</td></tr><tr><th>교육 목표</th><td>근무표 작성·수정·공지에 쓰는 시간을 AI와 무료 도구로 줄이고, AI가 규칙을 어길 수 있다는 점을 알고 결과를 시트로 검증하는 습관을 만든다</td></tr><tr><th>수업이 끝나면</th><td>① 작성원칙을 말로 설명해 조건부 서식 수식을 받아 낸다<br/>② 구글 폼으로 신청근무를 한 번에 모은다<br/>③ AI로 근무표 생성기(aa 3-3-2 · bb 5-5-5)를 만든다<br/>④ 생성 결과를 시트의 빨간 칸으로 검증하고 수정을 요청한다<br/>⑤ 내일 우리 병동에서 해 볼 한 가지를 정한다</td></tr></table></div></section><section class="section" id="timetable"><div class="section-label">TIMETABLE</div><h2>타임테이블</h2><p>AI에게 그냥 시키면 틀린다는 것을 먼저 보고, 규칙을 시트로 검증하는 흐름으로 진행해요. 시간이 남으면 보너스로 이메일 알림 자동화를 해 봐요.</p><div class="table-wrap"><table><thead><tr><th>시간</th><th>단계</th><th>내용</th><th>도구</th></tr></thead><tbody><tr><td>0~8분</td><td>오프닝</td><td><ul class="tt"><li>AI에게 그냥 시키면 틀린다</li><li>aa·bb 근무표 파일 열기</li></ul></td><td><span class="tag tag-req sheet">구글 스프레드시트</span></td></tr><tr><td>8~18분</td><td>실습 A</td><td><ul class="tt"><li>작성원칙을 말로 설명</li><li>조건부 서식 3개 추가</li></ul></td><td><span class="tag tag-req sheet">구글 스프레드시트</span><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></td></tr><tr><td>18~26분</td><td>실습 B</td><td><ul class="tt"><li>구글 폼으로 신청근무 수집</li><li>응답표를 AI로 변환</li></ul></td><td><span class="tag tag-req sheet">구글 폼</span><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></td></tr><tr><td>26~46분</td><td>실습 C</td><td><ul class="tt"><li>근무표 생성기 만들기</li><li>aa 3-3-2 · bb 5-5-5</li></ul></td><td><span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></td></tr><tr><td>46~56분</td><td>검증 · 수정</td><td><ul class="tt"><li>시트에서 빨간 칸 확인</li><li>수정 요청 프롬프트</li></ul></td><td><span class="tag tag-req sheet">구글 스프레드시트</span><span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></td></tr><tr><td>56~60분</td><td>정리</td><td>오늘 가져갈 것 · 주의 사항</td><td>-</td></tr><tr><td>시간이 남으면</td><td>보너스</td><td>내일 근무 이메일 알림 자동화</td><td><span class="tag tag-req sheet">구글 Apps Script</span></td></tr></tbody></table></div></section><section class="section" id="prep"><div class="section-label">PREPARE</div><h2>수업 전 준비</h2><p>오늘 수업은 브라우저에서 진행해요. 아래 세 가지만 미리 준비해 오시면 됩니다.</p><ul><li><b>구글 계정:</b> 구글 드라이브·스프레드시트·폼을 쓰기 때문에 미리 로그인해 두세요.</li><li><b>AI 채팅 계정:</b> ChatGPT · 제미나이 · 클로드 중 하나에 로그인해 두세요. 무료 계정으로도 시작할 수 있지만 사용량 한도가 있어서, 한도에 걸릴 때를 대비해 두세 가지에 로그인해 두면 좋아요.</li><li><b>근무표 연습 파일:</b> 아래 파일을 내려받아 둬요. 번호만 쓰는 가상 근무표라 실명·사번은 없어요.</li></ul><div class="topic" id="prep-1"><h3>실습 파일</h3><div class="dl-list"><a class="dl-card" download="" href="./근무표 짜기 실습(aa병동).xlsx"><span class="dl-ico">XLSX</span><span class="dl-body"><b>근무표 짜기 실습(aa병동).xlsx</b><span>aa병동 3-3-2 · 10월(완성본) 탭과 11월 연습용 빈 틀 탭</span><span>실습 A · B · C에서 사용</span></span><span class="dl-btn">⬇ 다운로드</span></a><a class="dl-card" download="" href="./bb병동 근무표(팀별)샘플.xlsx"><span class="dl-ico">XLSX</span><span class="dl-body"><b>bb병동 근무표(팀별)샘플.xlsx</b><span>bb병동 5-5-5 · 10월 근무연습 빈 틀과 26.9월·26.10월 참고용 탭</span><span>실습 A · B · C에서 사용</span></span><span class="dl-btn">⬇ 다운로드</span></a><a class="dl-card" download="" href="./근무표 작성원칙.hwp"><span class="dl-ico">HWP</span><span class="dl-body"><b>근무표 작성원칙.hwp</b><span>이번 수업의 규칙 5가지의 원본 문서</span><span>작성원칙 설명에서 사용</span></span><span class="dl-btn">⬇ 다운로드</span></a><a class="dl-card" download="" href="./AI교육_입원환자_퇴원환자수_실명처리.csv"><span class="dl-ico csv">CSV</span><span class="dl-body"><b>AI교육_입원환자_퇴원환자수_실명처리.csv</b><span>가명 처리된 7·8월 입퇴원 4,512건 (두 시트를 하나로 합친 파일)</span><span>입퇴원 데이터 분석 실습에서 사용 · AI 채팅에 엑셀 업로드가 안 될 때 이 CSV로 올려요</span></span><span class="dl-btn">⬇ 다운로드</span></a></div><p style="font-size:13px;color:var(--muted)">CSV는 값만 저장돼요. 근무표 실습은 노란색 신청근무 칸과 서식이 필요하니 위의 xlsx를 그대로 구글 드라이브에 올려 쓰세요. CSV는 입퇴원 데이터처럼 표 값만 분석할 때 쓰면 돼요.</p></div></section><section class="section session" id="s0"><div class="session-head"><div class="eyebrow">OPENING · 0~8분</div><h2>오프닝</h2><p>오늘의 목적과 도구, 그리고 AI를 쓰는 기본 원칙을 먼저 맞춰요.</p></div><div class="topic" id="s0-1"><h3>0-1. 오늘의 목적</h3><p class="dh"><b>① 강의 설명</b></p><p>근무표를 만들고 고치고 공지하는 데 쓰는 시간을 AI와 무료 도구로 줄이는 날이에요. 다만 AI는 규칙을 자주 어겨요. 그래서 결과는 반드시 시트로 검증합니다.</p><div class="three-cards"><article><span>01</span><h3>시간 줄이기</h3><p>근무표 작성·수정·공지에 쓰는 시간을 AI와 무료 도구로 줄입니다.</p></article><article><span>02</span><h3>AI의 한계 알기</h3><p>AI는 규칙을 자주 어깁니다. 결과를 반드시 검증하는 습관을 만듭니다.</p></article><article><span>03</span><h3>내일 바로 쓰기</h3><p>템플릿·프롬프트·생성기를 가져가 우리 병동에 바로 적용합니다.</p></article></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>오늘의 결과물</b><br/>작성원칙을 지키는 근무표 + 자동 검증 시트 + 신청근무 수집 폼</div></div></div><div class="topic" id="s0-2"><h3>0-2. 오늘 쓰는 무료 도구</h3><p class="small">사용 도구 · 구글 스프레드시트 · 구글 폼 · 제미나이 Canvas / 클로드 아티팩트 · ChatGPT</p><p class="dh"><b>① 강의 설명</b></p><p>모두 무료로 시작할 수 있어요. 도구마다 맡는 일이 달라요.</p><div class="resource-list"><div class="resource-card"><b>근무표 틀 · 자동 검증</b><span class="small">구글 스프레드시트</span>aa·bb 근무표에서 작성원칙 위반을 조건부 서식으로 빨간색 표시</div><div class="resource-card"><b>신청근무 수집</b><span class="small">구글 폼</span>응답이 시트에 자동으로 쌓여 카톡 취합이 필요 없어요</div><div class="resource-card"><b>근무표 생성기</b><span class="small">제미나이 Canvas / 클로드 아티팩트</span>한국어로 설명하면 AI가 웹앱을 만들어 줘요</div><div class="resource-card"><b>규칙 → 수식, 문서 작성</b><span class="small">ChatGPT · 제미나이 · 클로드</span>조건부 서식 수식, 공지문, 인수인계 요약</div><div class="resource-card"><b>알림 자동화 (보너스)</b><span class="small">구글 Apps Script</span>매일 저녁 내일 근무를 이메일로 발송</div></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>도구 5개가 각각 <b>시트(검증) · 폼(수집) · 생성기(초안) · 채팅(수식·문장) · 스크립트(알림)</b>을 맡는다는 점을 확인해요.</div></div></div><div class="topic" id="s0-3"><h3>0-3. 핵심 원칙 · AI는 초안, 사람이 확정</h3><p class="small">사용 도구 · 구글 스프레드시트 · AI 채팅</p><p class="dh"><b>① 강의 설명</b></p><p>AI 채팅에 근무표 전체를 맡기면 규칙을 어기는 경우가 많아요. 그래서 <b>초안은 AI, 검증은 시트, 확정은 사람</b>이에요.</p><div class="flow" style="grid-template-columns:repeat(3,1fr)"><div><span>AI</span><b>초안 · 수식 · 문장</b><small>규칙을 설명하면 표와 수식, 공지문 초안을 만들어 줘요</small></div><div><span>구글 시트</span><b>자동 검증</b><small>규칙 위반과 인원 부족을 빨간색으로 바로 보여 줘요</small></div><div><span>수간호사</span><b>최종 확정</b><small>현장 사정과 책임은 사람이 판단하고 결정해요</small></div></div><div class="warning"><b>꼭 지킬 약속</b><br/>· 번호만 사용하고 실명·사번은 입력하지 않습니다. (파일의 사번 열은 가리고 사용)<br/>· 환자 정보는 절대 입력하지 않습니다.<br/>· 병원의 보안·개인정보 지침을 먼저 확인합니다.</div></div><div class="topic" id="s0-4"><h3>0-4. 근무표 파일 열기</h3><p class="small">사용 도구 · 구글 드라이브 · 구글 스프레드시트</p><p class="dh"><b>① 강의 설명</b></p><div class="procedure"><div>강사가 알려준 근무표 파일(aa병동 · bb병동)을 내 구글 드라이브에 올립니다.</div><div>올린 파일을 열고 [Google 스프레드시트로 저장]을 누릅니다.</div><div>화면 아래쪽 탭을 확인합니다. (aa 2개 · bb 3개)</div><div>aa는 [11월 연습용], bb는 [10월 근무연습] 탭에서 노란색 칸(신청근무)을 확인합니다.</div></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>파일에 들어 있는 탭</b><div class="table-wrap"><table><thead><tr><th>파일</th><th>탭</th><th>내용</th></tr></thead><tbody><tr><td>aa</td><td>10월</td><td>완성본 · 전월 근무</td></tr><tr><td>aa</td><td>11월</td><td>11월 연습용 빈 틀</td></tr><tr><td>bb</td><td>10월</td><td>10월 근무연습 빈 틀</td></tr><tr><td>bb</td><td>26.9월 · 26.10월</td><td>완성된 참고용</td></tr></tbody></table></div>마음껏 고쳐도 원본에는 영향이 없어요.</div></div></div></section><section class="section" id="s1"><div class="section-label">SESSION 1</div><h2>근무표 작성원칙 5가지</h2><p class="lead">AI에게 규칙을 설명하려면 먼저 사람이 규칙을 정확히 알아야 해요. 5가지를 차례로 짚어요.</p><div class="topic" id="s1-1"><h3>1-1. 작성원칙 ① O와 N의 개수</h3><p class="small">사용 도구 · 구글 스프레드시트</p><p class="dh"><b>① 강의 설명</b></p><div class="three-cards"><article><span>규칙 1</span><h3>O는 11개 이상</h3><p>10월은 O(Off)를 최소 11개 입력합니다. 11개보다 많이 줄 수도 있습니다.</p></article><article><span>규칙 2</span><h3>한 주에 O 2개 이상</h3><p>월요일부터 일요일까지 한 주마다 O가 최소 2개는 들어가야 합니다.</p></article><article><span>규칙 3</span><h3>N은 최대 6~7개</h3><p>한 달에 한 사람이 넣을 수 있는 N(나이트)은 최대 6~7개입니다.</p></article></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>기억하기</b> · O는 최소 11개 · N은 최대 7개</div></div></div><div class="topic" id="s1-2"><h3>1-2. 작성원칙 ② N을 붙이는 방법</h3><p class="small">사용 도구 · 구글 스프레드시트</p><p class="dh"><b>① 강의 설명</b></p><div class="three-cards"><article><span>규칙 1</span><h3>N은 2~3개까지</h3><p>N 근무는 2개, 3개까지 붙여서 입력할 수 있습니다.</p></article><article><span>규칙 2</span><h3>끝나면 O 2개 이상</h3><p>N이 끝나면 바로 이어서 2개 이상의 O를 입력합니다.</p></article><article><span>규칙 3</span><h3>다음 N은 일주일 뒤</h3><p>N 근무 후 다음 N 근무까지는 일주일 정도 간격을 둡니다.</p></article></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>예시</b><br/>N · N · O · O &nbsp;→&nbsp; 일주일 뒤 &nbsp;N · N · N · O · O</div></div></div><div class="topic" id="s1-3"><h3>1-3. 작성원칙 ③ 넣으면 안 되는 순서</h3><p class="small">사용 도구 · 구글 스프레드시트</p><p class="dh"><b>① 강의 설명</b></p><div class="three-cards"><article><span>금지 1</span><h3>E → D, E → P</h3><p>이브닝(E) 다음 근무로 D나 P를 넣지 않습니다. E-O-D도 되도록 피합니다.</p></article><article><span>금지 2</span><h3>P → D, N → D</h3><p>P 다음에 D, N 다음에 D도 넣지 않습니다.</p></article><article><span>원칙</span><h3>전월과 이어서 짜기</h3><p>전월(예: 9월) 마지막에 입력된 근무표와 연동해서 작성합니다.</p></article></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>기억하기</b> · E→D · E→P · P→D · N→D 순서는 금기</div></div></div><div class="topic" id="s1-4"><h3>1-4. 작성원칙 ④ 병동별 인원과 특수 규칙</h3><p class="small">사용 도구 · 구글 스프레드시트</p><p class="dh"><b>① 강의 설명</b></p><div class="three-cards"><article><span>aa병동</span><h3>3-3-2</h3><p>Day 3명, Evening 3명, Night 2명. 연차(올드·중간·아랫) 색깔별로 1명씩 들어갑니다.</p></article><article><span>bb병동</span><h3>5-5-5</h3><p>A~E조에서 D·E·N을 한 명씩 배정해 근무조별 5명이 됩니다.</p></article><article><span>정해진 근무</span><h3>aa 1번 · bb 5번</h3><p>월~목 E, 금·토 O, 일 D. bb 23번·14번(임신)은 D만 배정합니다.</p></article></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>인원 구성</b> · aa병동 하루 8명 · bb병동 하루 15명</div></div></div><div class="topic" id="s1-5"><h3>1-5. 작성원칙 ⑤ 신청근무와 균형</h3><p class="small">사용 도구 · 구글 스프레드시트</p><p class="dh"><b>① 강의 설명</b></p><div class="three-cards"><article><span>규칙 1</span><h3>노란색은 신청근무</h3><p>엑셀의 D, E, N, T, O(노란색)는 신청근무입니다. 바꾸지 않고 먼저 배정합니다.</p></article><article><span>규칙 2</span><h3>개인별로 비슷하게</h3><p>한 달 동안 한 사람의 D/E/N 개수가 비슷해야 합니다. 예) 7/8/6</p></article><article><span>규칙 3</span><h3>전체도 비슷하게</h3><p>전체 간호사의 D/E/N 개수도 비슷해야 합니다. 예) A 6/8/6, B 7/7/6</p></article></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>기억하기</b> · 신청근무는 그대로 두고, D/E/N은 고르게</div></div></div></section><section class="section" id="sA"><div class="section-label">PRACTICE A · 8~18분</div><h2>실습 A · 작성원칙을 말로 설명해 조건부 서식 만들기</h2><p class="lead">수식을 외울 필요는 없어요. 규칙을 AI에게 말로 설명하면 수식을 받아 낼 수 있어요. 적용 범위를 정확히 쓰는 것이 포인트예요.</p><div class="topic" id="sA-0"><h3>A-0. 추가할 규칙 3개와 적용 방법</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 스프레드시트</span><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></p><p class="dh"><b>① 강의 설명</b></p><p>작성원칙 3번(N 연속)과 4번(금기 순서)을 시트에서 자동으로 확인하는 실습이에요. 아래 표는 aa 11월 연습용 기준이에요.</p><div class="table-wrap"><table><thead><tr><th>규칙</th><th>적용 범위</th></tr></thead><tbody><tr><td>N 4회 연속 금지</td><td>D4:AG18</td></tr><tr><td>금기 순서 E→D, E→P, P→D, N→D</td><td>E4:AG18</td></tr><tr><td>N 한 달 7개 초과 경고</td><td>AK4:AK18</td></tr></tbody></table></div><div class="procedure"><div>프롬프트를 복사해 AI 창에 붙여넣기</div><div>AI가 준 수식을 [서식 → 조건부 서식 → 맞춤 수식]에 입력</div><div>서식은 빨간 배경으로 지정하고 완료</div></div><div class="notice">bb병동은 적용 범위만 <b>D5:AH33</b> (N 횟수는 <b>AK5:AK33</b>)으로 바꿔요.</div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>규칙 3개가 모두 시트에 들어가면, 규칙을 어긴 칸이 <b>빨간색</b>으로 바뀌어요.</div></div></div><div class="topic" id="sA-1"><h3>A-1. N 4회 연속 금지</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 스프레드시트</span><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></p><p class="dh"><b>① 강의 설명</b></p><p>N은 2~3번까지는 붙여 써도 되지만 4번 연속이면 안 돼요. 이 규칙을 말로 설명해서 수식을 받아요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>프롬프트 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>구글 시트 조건부 서식 맞춤 수식으로 &#x27;N이 4번 연속이면 빨간색&#x27;을 만들고 싶어.
+적용 범위는 D4:AG18이야. 근무 칸에는 D, E, N, O, T가 들어 있고, N은 2~3번까지는 붙여 써도 돼.
+클릭 순서대로 따라 할 수 있게 단계별로 알려줘.</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>확인 방법</b><br/>D7~G7에 N을 4번 입력 → 4번째 칸(G7)이 빨간색이면 성공<span class="small">수식이 안 맞으면 에러 화면 내용을 그대로 다시 물어보세요.</span></div></div></div><div class="topic" id="sA-2"><h3>A-2. 금기 순서 4가지</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 스프레드시트</span><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></p><p class="dh"><b>① 강의 설명</b></p><p>왼쪽 칸과 내 칸의 조합이 E→D, E→P, P→D, N→D이면 빨간색으로 표시해요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>프롬프트 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>구글 시트 조건부 서식 맞춤 수식으로 &#x27;왼쪽 칸 → 내 칸이 E→D, E→P, P→D, N→D 중 하나이면 빨간색&#x27;을 만들고 싶어.
+적용 범위는 E4:AG18이야.
+클릭 순서대로 단계별로 알려줘.</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>확인 방법</b><br/>H7에 E, I7에 D 입력 → I7이 빨간색이면 성공<span class="small">빨간색이 안 보이면 조건부 서식 목록에서 빨간 규칙을 위로 끌어 올리세요.</span></div></div></div><div class="topic" id="sA-3"><h3>A-3. N 7회 초과 경고</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 스프레드시트</span><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></p><p class="dh"><b>① 강의 설명</b></p><p>AK열에는 한 사람의 한 달 N 횟수가 들어 있어요. 7회를 넘으면 경고해요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>프롬프트 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>구글 시트 AK4:AK18에 한 달 N 횟수가 있어.
+7회를 넘으면 빨간색이 되도록 조건부 서식 맞춤 수식과 설정 순서를 알려줘.</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>확인 방법</b><br/>N을 8개 이상 입력 → N 횟수 칸(AK7)이 빨간색이면 성공<span class="small">빨간색이 안 보이면 조건부 서식 목록에서 빨간 규칙을 위로 끌어 올리세요.</span></div></div></div></section><section class="section" id="sB"><div class="section-label">PRACTICE B · 18~26분</div><h2>실습 B · 구글 폼으로 신청근무 수집</h2><p class="lead">카톡으로 취합하던 신청근무(D, E, N, T, O)를 링크 하나로 받고, 응답이 시트에 자동으로 쌓이게 해요.</p><div class="topic" id="sB-1"><h3>B-1. 폼 질문 구성</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 폼</span></p><p class="dh"><b>① 강의 설명</b></p><p>질문은 6개예요. 병동 질문이 있어야 aa와 bb의 같은 번호를 구분할 수 있어요. 연습은 가상 번호와 가상 날짜만 입력하세요.</p><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><div class="table-wrap"><table><thead><tr><th>질문</th><th>유형</th><th>필수</th></tr></thead><tbody><tr><td>병동</td><td>객관식 (aa / bb)</td><td>O</td></tr><tr><td>간호사 번호</td><td>드롭다운 (aa 1~15 · bb 1~29)</td><td>O</td></tr><tr><td>신청 날짜 1</td><td>날짜</td><td>O</td></tr><tr><td>신청 근무 1</td><td>객관식 (D · E · N · T · O)</td><td>O</td></tr><tr><td>신청 날짜 2</td><td>날짜</td><td></td></tr><tr><td>신청 근무 2</td><td>객관식 (D · E · N · T · O)</td><td></td></tr></tbody></table></div></div></div></div><div class="topic" id="sB-2"><h3>B-2. 구글 시트에 연결하기</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 폼</span><span class="tag tag-req sheet">구글 스프레드시트</span></p><p class="dh"><b>① 강의 설명</b></p><div class="procedure"><div>forms.google.com에서 새 양식을 만들고 제목을 <b>11월 신청근무</b>로 정합니다.</div><div>앞 장의 질문들을 추가합니다.</div><div>[응답] 탭 → [스프레드시트에 연결]을 눌러 근무표 파일을 고릅니다.</div><div>[보내기] 링크를 공유하면 응답이 시트에 자동으로 쌓입니다.</div></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>가상 응답을 1건 제출하면 연결한 시트의 <b>폼 응답</b> 탭에 한 줄이 바로 생겨요.</div></div></div><div class="topic" id="sB-3"><h3>B-3. 응답표를 AI에게 보여 주기</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 스프레드시트</span><span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></p><p class="dh"><b>① 강의 설명</b></p><div class="procedure"><div>폼 응답 탭에서 응답이 쌓인 칸 전체를 선택해 복사합니다. (Ctrl+A → Ctrl+C)</div><div>AI 채팅창(ChatGPT · 제미나이 · 클로드)을 엽니다.</div><div>복사한 응답표를 그대로 붙여넣습니다. <b>아직 전송하지 않습니다.</b></div><div>연습에서는 가상 번호와 가상 날짜만 있는 응답표를 사용합니다.</div></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>채팅 입력창에 응답표가 붙어 있고, 다음 단계의 프롬프트를 이어서 쓸 준비가 된 상태예요.</div></div></div><div class="topic" id="sB-4"><h3>B-4. 응답표 → 신청근무 변환</h3><p class="small">사용 도구 · <span class="tag tag-req">ChatGPT · 제미나이 · 클로드</span></p><p class="dh"><b>① 강의 설명</b></p><p>응답표 뒤에 아래 프롬프트를 이어 붙여 보내요. 같은 사람이 여러 번 제출했으면 가장 나중 응답만 써요. bb병동은 &ldquo;aa병동 11월&rdquo;을 &ldquo;bb병동 10월&rdquo;로 바꿔 요청해요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>프롬프트 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>위에 붙여넣은 것은 구글 폼 응답표야. 열은 타임스탬프, 병동, 번호, 날짜1, 근무1, 날짜2, 근무2야.
+aa병동 11월 응답만 골라서, 한 줄에 한 명씩 &quot;번호: 날짜=근무&quot; 형식으로 바꿔줘.  예) 2번: 1=E, 2=E, 7=E
+같은 번호가 여러 번 제출했으면 가장 나중 응답만 쓰고, 근무는 D, E, N, T, O만 허용해줘.</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>확인 방법</b> · &ldquo;응답이 몇 건이고 몇 명이 변환됐는지 알려줘&rdquo;라고 물어 숫자가 맞으면 성공<br/><b>결과 예시</b> · 2번: 1=E, 2=E, 7=E</div></div></div><div class="topic" id="sB-5"><h3>B-5. 신청근무를 생성기에 넣고 점검하기</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span><span class="tag tag-req sheet">구글 스프레드시트</span></p><p class="dh"><b>① 강의 설명</b></p><div class="procedure"><div>AI가 만들어 준 &ldquo;번호: 날짜=근무&rdquo; 줄들을 복사합니다.</div><div>근무표 생성기의 [신청근무] 입력칸에 붙여넣습니다.</div><div>[근무표 생성]을 누르면 신청근무는 그대로 두고 나머지 칸이 채워집니다.</div><div>[표 복사]로 복사해 근무표 D4(bb는 D5)에 <b>값만</b> 붙여넣습니다.</div></div><p>반영한 뒤에는 세 가지를 점검해요.</p><div class="three-cards"><article><span>점검 1</span><h3>같은 날 O 몰림</h3><p>같은 날 O 신청이 많아 최소 인원(aa 8명, bb 15명)을 못 채우지 않는지 봅니다.</p></article><article><span>점검 2</span><h3>금기 순서</h3><p>신청근무끼리 E→D, N→D 같은 금기 순서가 생기지 않았는지 봅니다.</p></article><article><span>점검 3</span><h3>신청은 그대로</h3><p>신청근무는 바꾸지 않고, 비어 있는 칸만 생성기로 채웁니다.</p></article></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>기억하기</b> · 응답표 복사 → AI가 변환 → 생성기 → 점검</div></div></div></section><section class="section" id="sCalc"><div class="section-label">BEFORE PRACTICE C</div><h2>먼저 계산해 보기 · 되는 조건인가?</h2><p class="lead">불가능한 조건은 어떤 AI도 풀 수 없어요. 생성기를 만들기 전에 조건이 가능한지 먼저 계산하는 습관을 가져요.</p><div class="topic" id="sCalc-1"><h3>계산식과 두 가지 예</h3><p class="small">사용 도구 · 계산 · 구글 스프레드시트</p><p class="dh"><b>① 강의 설명</b></p><div class="notice"><b>하루 필요 인원 × 일수 &nbsp;≤&nbsp; 인원 × (일수 − O 최소)</b></div><p>5/4/3은 15명 병동에서도 불가능한 조합이에요. aa병동은 3-3-2(하루 8명), bb병동은 5-5-5(하루 15명)이고 10월 O 최소는 11개예요.</p><div class="versus"><div><b class="todo">불가능 · D 5 / E 4 / N 3</b><p>하루 12명 × 30일 = 360<br/>15명 × (30 − 11) = 285<br/><b>360 &gt; 285 → O 11개를 줄 수 없습니다.</b></p></div><i>VS</i><div><b>가능 · D 3 / E 3 / N 2</b><p>하루 8명 × 30일 = 240<br/>15명 × (30 − 11) = 285<br/><b>240 ≤ 285 → 가능 (여유 45칸)</b></p></div></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>aa병동 11월(30일) 기준이에요. bb병동 10월(31일)은 15명 × 31일 = 465 ≤ 약 26명 × 20 = 520으로 가능하지만 여유가 적어요. (신규 3명은 교육 중이라 제외)</div></div></div></section><section class="section" id="sC"><div class="section-label">PRACTICE C · 26~46분</div><h2>실습 C · AI로 근무표 생성기 만들기</h2><p class="lead">프롬프트를 여섯 장으로 나눠 한 번에 붙여넣으면, AI가 aa 3-3-2 · bb 5-5-5 근무표 생성 웹앱을 만들어 줘요.</p><div class="topic" id="sC-1"><h3>C-1. 생성기 프롬프트 (1/6) · 기본 조건</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>제미나이는 Canvas를 선택한 뒤, 클로드는 아티팩트로 만들어 달라고 하며 붙여넣어요. 한 번에 길게 붙여넣으세요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>제미나이 Canvas 또는 클로드 아티팩트에 그대로 붙여넣기</span><button type="button">복사</button></div><pre>너는 웹앱 개발 도우미야. 병동 수간호사가 쓸 &quot;근무표 자동 생성기&quot;를 Canvas(또는 아티팩트)로 만들어줘. 코딩을 모르는 사람이 쓰니까 화면은 한국어로 쉽게 만들어줘.
+[기본 조건]
+- 파일 1개(HTML + JavaScript)로 동작, 설치와 로그인 불필요
+- 외부 서버 호출 금지, 입력한 내용은 저장하지 않음
+다음 장들에 이어서 붙여넣는 규칙과 계산 방식이 있습니다. 여섯 장을 모두 한 번에 보내세요.</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>결과물</b> · Canvas/아티팩트에 첫 장이 붙어 있고, 다음 장들을 이어서 붙여넣을 준비가 된 상태예요.</div></div></div><div class="topic" id="sC-2"><h3>C-2. 생성기 프롬프트 (2/6) · 입력 화면</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>신청근무 예시는 aa병동 11월 연습용 시트의 노란색 칸 값이에요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>이어서 붙여넣기 (입력 화면)</span><button type="button">복사</button></div><pre>[입력 화면 - 기본값을 미리 채워줘]
+- 병동 선택: aa병동 / bb병동
+- aa: 2026년 11월, 1~15번, D 3 · E 3 · N 2
+- bb: 2026년 10월, 1~29번(A~E조), D 5 · E 5 · N 5
+- 한 달 O 최소 11개, N 최대 7개, N 연속 최대 3개
+- 전월 마지막 근무(예: EO, NN)를 번호별로 입력
+- 신청근무(한 줄에 한 명, 형식 &quot;번호: 날짜=근무&quot;):
+  2번: 1=E, 2=E, 7=E
+  3번: 1~5=O, 6=N
+  8번: 1=N, 6=O, 7=O
+  9번: 3=T</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>결과물</b> · 병동 선택, 연·월, 인원, 신청근무 입력칸이 있는 입력 화면이 만들어져요.</div></div></div><div class="topic" id="sC-3"><h3>C-3. 생성기 프롬프트 (3/6) · 공통 규칙</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>세션 1에서 배운 작성원칙이 그대로 규칙 7가지로 들어가요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>이어서 붙여넣기 ① (공통 규칙)</span><button type="button">복사</button></div><pre>[지켜야 할 규칙]
+1. 날짜별 D/E/N 인원은 정해진 인원과 같게
+2. 한 달 O 최소 11개, 한 주(월~일)마다 O 최소 2개
+3. N은 한 달 최대 7개, 2~3개까지만 붙이고 끝나면 O 2개 이상, 다음 N은 일주일 간격
+4. E→D, E→P, P→D, N→D 금지 (E-O-D는 되도록 피함)
+5. 전월 마지막 근무와 이어서 계산
+6. 신청근무(D/E/N/T/O)는 바꾸지 않고 우선 배정
+7. 개인별 D/E/N 횟수가 비슷하게 (예: 7/8/6), 전체 간호사도 고르게</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>결과물</b> · 규칙 7가지가 앱의 검사 항목으로 반영돼요.</div></div></div><div class="topic" id="sC-4"><h3>C-4. 생성기 프롬프트 (4/6) · 병동별 규칙 · 계산</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>계산 방식을 지정해야 AI가 값을 &lsquo;찍지&rsquo; 않고 점수로 계산해요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>이어서 붙여넣기 ② (병동별 규칙 · 계산)</span><button type="button">복사</button></div><pre>[병동별 규칙]
+- aa: 근무조마다 연차 색깔(올드·중간·아랫)별 1명씩 (Night는 2명)
+- bb: A~E조에서 D·E·N 각 1명씩 (5-5-5)
+- aa 1번 · bb 5번: 월~목 E, 금·토 O, 일 D 고정
+- bb 23번 · 14번(임신): D만 배정
+[계산 방식]
+- 규칙 위반 개수를 점수로 계산해 점수가 줄도록 반복 수정 (위반 0이면 멈춤, 10초 한도)
+- 시작 전 실현 가능성 검사: (하루 필요 인원 × 일수) &gt; (인원 × (일수 − 11))이면 &#x27;이 조건으로는 불가능합니다&#x27;와 이유를 보여주고 생성하지 않기
+- 위반이 남으면 &#x27;완벽하지 않은 결과입니다&#x27;라고 표시</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>결과물</b> · 병동별 고정 근무와 점수 계산, &lsquo;불가능합니다&rsquo; 경고가 들어간 앱이 돼요.</div></div></div><div class="topic" id="sC-5"><h3>C-5. 생성기 프롬프트 (5/6) · 결과 화면</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>결과 화면과 복사 버튼을 요청해야 시트에 바로 붙여넣을 수 있어요. 시트의 노란색은 신청근무이므로 앱에서는 다른 색을 쓰게 해요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>이어서 붙여넣기 ③ (결과 화면)</span><button type="button">복사</button></div><pre>[결과 화면]
+- 표: 세로는 번호, 가로는 1일~말일 (요일 포함, 토·일은 빨간 글씨). 색: D 하늘, E 주황, N 파랑, O 연두, T 회색. 신청근무 칸은 노란색(변경 금지), 규칙 위반 칸은 빨간색.
+- 표 아래: 날짜별 D/E/N 인원 합계 (정해진 인원과 다르면 빨간색), 개인별 D/E/N/O 횟수
+- &quot;검증 리포트&quot;: 위 공통 규칙 1~7별 위반 개수와 위반 위치(번호, 날짜), 바뀐 신청근무 목록
+- 버튼: [근무표 생성] [다시 생성] [표 복사(번호 제외)] [표 복사(번호 포함)]
+  복사 형식은 탭으로 구분된 텍스트로, 헤더 없이 D/E/N/O/T 값만 넣어줘. (aa는 D4, bb는 D5에 바로 붙여넣을 수 있게)</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>결과물</b> · 색이 칠해진 근무표, 인원 합계, 검증 리포트, 복사 버튼이 있는 완성 화면이 나와요.</div></div></div><div class="topic" id="sC-6"><h3>C-6. 생성기 프롬프트 (6/6) · 이 프롬프트가 잘 작동하는 이유</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>다섯 장을 모두 보낸 뒤, 왜 이 프롬프트가 잘 작동하는지 짚어 봐요.</p><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><ul class="checklist"><li>계산 방식을 지정해서 AI가 값을 &lsquo;찍지&rsquo; 않고 규칙 위반을 점수로 계산하게 합니다.</li><li>불가능한 조건은 미리 알려 주게 해서 거짓 성공을 막습니다.</li><li>검증 리포트로 사람이 결과를 바로 확인할 수 있습니다.</li><li>탭 구분 복사로 시트에 바로 붙여넣을 수 있고, 신청근무는 바뀌지 않습니다.</li></ul></div></div></div></section><section class="section" id="sV"><div class="section-label">VERIFY · 46~56분</div><h2>검증과 수정 요청</h2><p class="lead">생성기가 만든 결과를 믿기 전에, 시트의 빨간 칸으로 다시 확인해요.</p><div class="topic" id="sV-1"><h3>V-1. 앱 결과를 시트로 다시 확인</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span><span class="tag tag-req sheet">구글 스프레드시트</span></p><p class="dh"><b>① 강의 설명</b></p><div class="procedure"><div><b>앱에서 생성</b> · [근무표 생성]을 누르고 검증 리포트를 확인합니다. [다시 생성]도 3번 눌러 봅니다.</div><div><b>표 복사</b> · [표 복사(번호 제외)] 버튼을 누릅니다.</div><div><b>시트에 붙여넣기</b> · aa는 11월 연습용 D4, bb는 10월 근무연습 D5를 클릭하고 Ctrl+Shift+V (값만 붙여넣기).</div><div><b>빨간 칸 비교</b> · 시트의 빨간 칸과 앱의 검증 리포트가 같은지, 노란 신청근무가 그대로인지 비교합니다.</div></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><b>일치하면</b> 앱의 규칙이 제대로 만들어진 것이니 믿을 만해요.<br/><b>일치하지 않으면</b> 앱의 규칙이 틀린 것이니 아래 수정 요청 프롬프트로 고쳐요.</div></div></div><div class="topic" id="sV-2"><h3>V-2. 일부러 틀려 보기 · 앱이 정직한지 시험</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>앱이 거짓으로 &ldquo;성공&rdquo;이라고 하지 않고, 못 지킨 부분을 솔직하게 보여 주는지 시험해요.</p><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><div class="table-wrap"><table><thead><tr><th>시험</th><th>입력</th><th>기대 결과</th></tr></thead><tbody><tr><td>불가능한 조건</td><td>aa병동 하루 인원을 D5 / E4 / N3으로 변경</td><td>&ldquo;이 조건으로는 불가능합니다&rdquo; 경고</td></tr><tr><td>신청근무 몰아넣기</td><td>15일에 aa병동 8명 이상이 O를 신청</td><td>신청근무는 그대로 두고 인원 부족을 경고</td></tr><tr><td>N 제한 강화</td><td>N 최대 횟수를 3으로 변경</td><td>경고 또는 인원 부족이 나타남</td></tr></tbody></table></div></div></div></div><div class="topic" id="sV-3"><h3>V-3. 수정 요청 프롬프트 ① 주말 · 특정 날짜</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>같은 대화창에서 이어서 요청해야 AI가 직전 결과를 기억하고 고쳐 줘요. 새 대화창을 열면 표를 다시 붙여넣어야 해요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>주말 근무 공평하게 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>개인별 주말(토·일) 근무 횟수 칸을 표 아래 통계에 추가하고, 최대와 최소 차이가 2회 이하가 되도록 점수 함수에 반영해줘.</pre></div><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>특정 날짜 인원 늘리기 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>특정 날짜의 최소 인원을 따로 지정할 수 있는 입력칸을 추가해줘. (예: 15일 D 4명)</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>통계에 주말 근무 횟수 칸이 생기고, 특정 날짜 인원 입력칸이 추가돼요.</div></div></div><div class="topic" id="sV-4"><h3>V-4. 수정 요청 프롬프트 ② 고정 근무 · 위반 설명</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>고정 근무 패턴을 입력하게 하거나, 위반 설명을 사람이 읽기 쉬운 문장으로 바꿀 수 있어요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>근무 고정 입력 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>&quot;aa 1번: 월~목 E, 금·토 O, 일 D&quot;처럼 요일 고정 패턴을 입력하면 그 칸은 바꾸지 않고 표에 그대로 반영되게 해줘.</pre></div><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>위반 설명 쉽게 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>검증 리포트의 위반 항목을 &quot;3번 8~11일 N 4연속&quot;처럼 사람이 읽기 쉬운 문장으로 바꿔줘.</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>고정 패턴 입력칸이 생기고, 검증 리포트가 &ldquo;3번 8~11일 N 4연속&rdquo;처럼 읽기 쉬워져요.</div></div></div><div class="topic" id="sV-5"><h3>V-5. 수정 요청 프롬프트 ③ 틀렸을 때 · 오류가 날 때</h3><p class="small">사용 도구 · <span class="tag tag-req nap">제미나이 Canvas / 클로드 아티팩트</span></p><p class="dh"><b>① 강의 설명</b></p><p>결과가 틀렸거나 앱이 안 열릴 때는 아래 두 문장을 상황에 맞게 바꿔 보내요.</p><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>결과가 틀렸을 때 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>방금 만든 근무표에 문제가 있어. [예: 15일 N이 1명뿐이고, 3번이 N 뒤에 O 없이 바로 D를 했어] 다른 칸과 노란 신청근무는 그대로 두고 이 문제만 고쳐서 전체 표를 다시 보여줘.</pre></div><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>오류가 날 때 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>앱을 실행했더니 [화면 또는 에러 내용] 문제가 생겼어. 원인을 설명하고 수정된 전체 코드를 다시 보여줘.</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>문제만 고쳐진 전체 표가 다시 나오고, 노란 신청근무는 그대로예요.</div></div></div></section><section class="section" id="sBonus"><div class="section-label">BONUS · 시간이 남으면</div><h2>보너스 · 내일 근무 이메일 알림 자동화</h2><p class="lead">근무표에 적힌 내일 근무를 매일 저녁 이메일로 자동 발송해요.</p><div class="topic" id="sBonus-1"><h3>보너스-1. 설정 순서와 동작 흐름</h3><p class="small">사용 도구 · <span class="tag tag-req sheet">구글 Apps Script</span><span class="tag tag-req sheet">구글 스프레드시트</span></p><p class="dh"><b>① 강의 설명</b></p><div class="procedure"><div>근무표 AN열(이메일)에 연습용으로 본인 이메일을 입력합니다.</div><div>확장 프로그램 → Apps Script를 엽니다. (배포 불필요)</div><div>아래 코드를 붙여넣고 저장 → [실행] → 권한을 허용합니다.</div><div>트리거(시계 아이콘) → 일 단위 타이머, 오후 6~7시로 설정합니다.</div><div>내일 날짜 칸에 D를 입력하고 직접 실행해 테스트합니다.</div></div><div class="flow" style="grid-template-columns:repeat(4,1fr)"><div><span>1</span><b>근무표 시트</b><small>내일 근무가 적혀 있어요</small></div><div><span>2</span><b>Apps Script</b><small>내일 근무자 확인</small></div><div><span>3</span><b>매일 저녁 자동 실행</b><small>트리거로 예약</small></div><div><span>4</span><b>이메일 발송</b><small>&ldquo;내일 근무 안내&rdquo;</small></div></div><div class="warning"><b>주의</b><br/>· 일반 구글 계정은 하루 약 100통까지만 보낼 수 있습니다.<br/>· 연습은 본인·가상 이메일로만 합니다. 실제 직원 이메일은 병원 정책을 확인한 뒤 사용하세요.<br/>· 코드 맨 위의 YEAR · MONTH가 내일 날짜와 같아야 발송됩니다.</div><p class="dh"><b>② 프롬프트 복사</b></p><div class="copybox"><div class="copyhead"><span>Apps Script 코드 · 복사해서 사용하세요</span><button type="button">복사</button></div><pre>function sendTomorrowShift() {
+  const YEAR = 2026, MONTH = 11;                    // 근무표의 연·월
+  const sh = SpreadsheetApp.getActive().getSheetByName(&#x27;11월 연습용&#x27;); // 탭 이름이 다르면 수정
+  const t = new Date();
+  t.setDate(t.getDate() + 1);
+  if (t.getFullYear() !== YEAR || t.getMonth() + 1 !== MONTH) return;
+  const label = { D: &#x27;데이&#x27;, E: &#x27;이브닝&#x27;, N: &#x27;나이트&#x27; };
+  const rows = sh.getRange(4, 1, 15, 40).getValues(); // A4:AN18
+  rows.forEach(r =&gt; {
+    const shift = r[t.getDate() + 2]; // 날짜 d의 근무는 D열부터 (인덱스 d+2)
+    const mail = r[39];               // AN열 이메일
+    if (label[shift] &amp;&amp; mail) {
+      MailApp.sendEmail(mail, &#x27;[내일 근무 안내] &#x27; + label[shift],
+        r[0] + &#x27;번 간호사님, 내일(&#x27; + (t.getMonth() + 1) + &#x27;/&#x27; + t.getDate() + &#x27;) 근무는 &#x27; + label[shift] + &#x27;입니다.&#x27;);
+    }
+  });
+}</pre></div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div>내일 날짜 칸에 D를 넣고 실행하면 입력한 이메일로 <b>[내일 근무 안내] 데이</b> 메일이 도착해요. 코드가 안 돌면 에러 메시지를 AI에게 붙여넣고 &ldquo;원인과 고치는 방법&rdquo;을 물어보세요.</div></div></div></section><section class="section" id="sEnd"><div class="section-label">WRAP UP · 56~60분</div><h2>정리 · 오늘 가져갈 것과 주의 사항</h2><p class="lead">오늘 만든 것을 정리하고, 내일 바로 해 볼 한 가지를 정해요.</p><div class="topic" id="sEnd-1"><h3>오늘 가져갈 것</h3><p class="dh"><b>① 강의 설명</b></p><div class="three-cards"><article><span>FILE</span><h3>근무표 파일</h3><p>작성원칙이 담긴 aa·bb병동 연습용 시트</p></article><article><span>PROMPT</span><h3>프롬프트 모음</h3><p>규칙 추가, 생성기 제작, 수정 요청 문장</p></article><article><span>APP</span><h3>근무표 생성기</h3><p>한국어 설명으로 AI가 만든 웹앱</p></article></div><div class="three-cards"><article><span>FORM</span><h3>신청근무 폼</h3><p>링크 하나로 취합하고 시트에 자동 저장</p></article></div><div class="warning"><b>주의 사항</b><br/>· <b>AI는 틀릴 수 있습니다.</b> 결과는 시트로 검증하고, 최종 확정은 사람이 합니다.<br/>· <b>개인정보를 넣지 않습니다.</b> 실명·사번·환자 정보 금지. 번호로 연습합니다.<br/>· <b>병원 규정을 확인합니다.</b> 연속 근무 제한, 노사 합의는 현장 기준이 우선입니다.</div><p class="dh"><b>③ 결과물 보여주기</b></p><div class="practice-brief"><div><div class="final-box"><div class="eyebrow">TODAY&rsquo;S ACTION</div><h3>내일 우리 병동에서 해 볼 한 가지를 정해 보세요.</h3><p>예) 신청근무 폼 만들기 · 조건부 서식 3개 적용 · 근무표 생성기 만들어 보기</p></div></div></div></div></section></main>
+</div>
+<button id="slideBtn" type="button">▶ 슬라이드로 보기</button>
+<div id="deck" hidden><div id="viewport"><div id="stage"><div id="master"><span>수간호사의 반복 행정업무 줄이기</span></div><div id="mbar"><i id="prog"></i></div><div id="slide"></div>
+<div id="pager"><button id="prev" type="button" aria-label="이전">◀</button><span id="pg"></span><button id="next" type="button" aria-label="다음">▶</button></div></div></div>
+<div id="bar"><button id="exit" type="button">✕ 닫기 (Esc)</button></div></div>
+<script>(function(){
+  /* 복사 버튼 */
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.copyhead button');if(!b)return;
+    var pre=b.closest('.copybox').querySelector('pre');
+    var done=function(){var t=b.textContent;b.textContent='복사됨';setTimeout(function(){b.textContent=t;},1200);};
+    if(navigator.clipboard)navigator.clipboard.writeText(pre.innerText).then(done,done);else done();
+  });
+
+  /* 목차 스크롤 연동 */
+  var links=[].slice.call(document.querySelectorAll('aside nav a[href^="#"]'));
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function update(){
+    var y=window.scrollY+120,cur=-1;
+    targets.forEach(function(el,i){if(el&&el.getBoundingClientRect().top+window.scrollY<=y)cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('active',i===cur);});
+    if(cur>=0){var a=links[cur],box=a.closest('aside'),r=a.getBoundingClientRect();
+      if(r.top<120||r.bottom>window.innerHeight-20)box.scrollTop+=r.top-window.innerHeight/2;}
+  }
+  window.addEventListener('scroll',update,{passive:true});update();
+
+  /* 목차 숨기기 */
+  var btn=document.querySelector('.nav-toggle'),label=btn.querySelector('span'),body=document.body;
+  var mq=window.matchMedia('(max-width: 1020px)');
+  function isOpen(){return mq.matches?body.classList.contains('nav-open'):!body.classList.contains('nav-hidden');}
+  function sync(){var o=isOpen();btn.setAttribute('aria-expanded',o);label.textContent=o?'목차 숨기기':'목차 보기';}
+  try{if(localStorage.getItem('navHidden')==='1')body.classList.add('nav-hidden');}catch(e){}
+  btn.addEventListener('click',function(){
+    if(mq.matches){body.classList.toggle('nav-open');}
+    else{var h=body.classList.toggle('nav-hidden');try{localStorage.setItem('navHidden',h?'1':'0');}catch(e){}}
+    sync();
+  });
+  document.querySelectorAll('aside nav a').forEach(function(a){a.addEventListener('click',function(){if(mq.matches){body.classList.remove('nav-open');sync();}});});
+  if(mq.addEventListener)mq.addEventListener('change',sync);
+  sync();
+
+  /* 슬라이드 보기: 표지 / 전체 목차 / 섹션 소개 / 항목(topic) 1개 = 1장 */
+  var main=document.querySelector('main'),deck=document.getElementById('deck'),box=document.getElementById('slide'),
+      pgEl=document.getElementById('pg'),prog=document.getElementById('prog'),pages=[],i=0;
+  function build(){
+    pages=[];
+    var hero=main.querySelector('.hero');
+    pages.push(hero.innerHTML);
+    var o='<h3 class="st">전체 목차</h3><div class="outline">';
+    document.querySelectorAll('aside nav .grp').forEach(function(g){
+      o+='<div class="og"><b>'+g.querySelector('.grp-label').textContent+'</b>';
+      g.querySelectorAll('a.l2').forEach(function(a){o+='<span>'+a.textContent+'</span>';});
+      o+='</div>';
+    });
+    pages.push(o+'</div>');
+    main.querySelectorAll(':scope > .section').forEach(function(sec){
+      var h2=sec.querySelector('h2'),eb=sec.querySelector('.section-label,.eyebrow');
+      var ebTxt=eb?eb.textContent:'';
+      var topics=sec.querySelectorAll(':scope > .topic');
+      if(!topics.length){
+        var c=sec.cloneNode(true);c.querySelectorAll('.section-label,h2').forEach(function(x){x.remove();});
+        pages.push('<div class="eb">'+ebTxt+'</div><h3 class="st">'+h2.textContent+'</h3>'+c.innerHTML);
+      }else{
+        var intro=sec.querySelector(':scope > .lead, :scope > .session-head p');
+        pages.push('<div class="eb">'+ebTxt+'</div><h3 class="st">'+h2.textContent+'</h3>'+(intro?'<p class="lead">'+intro.innerHTML+'</p>':''));
+      }
+      topics.forEach(function(t){
+        var c=t.cloneNode(true),h=c.querySelector('h3');h.className='st';
+        var tl=c.querySelector('p.small');var tools=tl?tl.outerHTML:'';if(tl)tl.remove();
+        h.remove();
+        pages.push('<div class="eb">'+h2.textContent+'</div><h3 class="st">'+h.textContent+'</h3>'+tools+c.innerHTML);
+      });
+    });
+  }
+  function show(n){
+    i=Math.max(0,Math.min(pages.length-1,n));
+    box.innerHTML=pages[i];box.scrollTop=0;
+    pgEl.textContent=(i+1)+' / '+pages.length;prog.style.width=((i+1)/pages.length*100)+'%';
+  }
+  var stage=document.getElementById('stage'),vp=document.getElementById('viewport');
+  function fit(){var k=Math.min(vp.clientWidth/1280,vp.clientHeight/720);stage.style.transform='translate(-50%,-50%) scale('+k+')';}
+  function open(){deck.hidden=false;document.body.style.overflow='hidden';fit();build();show(0);}
+  function close(){deck.hidden=true;document.body.style.overflow='';}
+  window.addEventListener('resize',function(){if(!deck.hidden)fit();});
+  document.getElementById('slideBtn').onclick=open;
+  document.getElementById('exit').onclick=close;
+  document.getElementById('prev').onclick=function(){show(i-1);};
+  document.getElementById('next').onclick=function(){show(i+1);};
+  document.addEventListener('keydown',function(e){
+    if(deck.hidden)return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Escape')close();
+  });
+})();
+</script>
+</body></html>
